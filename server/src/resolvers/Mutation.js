@@ -59,9 +59,16 @@ async function vote(parent, args, ctx, info) {
   )
 }
 
+async function createHome(parent, { title, price, nbeds }, ctx, info) {
+  return ctx.db.mutation.createHome(
+    { data: { title, price, nbeds } }, info
+  )
+}
+
 module.exports = {
   post,
   signup,
   login,
   vote,
+  createHome
 }
