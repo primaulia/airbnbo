@@ -5,9 +5,8 @@ import gql from 'graphql-tag' // write graphql queries
 
 // custom component
 import Home from './Home'
-
-
 import Link from './Link'
+import CreateHomeForm from './CreateHomeForm'
 
 class LinkList extends Component {
   render () {
@@ -35,6 +34,7 @@ class LinkList extends Component {
         <h1>Airbnbo</h1>
         {/* hidden for now { links } */}
         { allHomesList }
+        <CreateHomeForm />
       </div>
     )
   }

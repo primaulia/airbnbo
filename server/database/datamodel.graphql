@@ -27,6 +27,7 @@ type Home {
   title: String!
   price: Int!
   nbeds: Int
+  owner: User
 }
 
 type Category {

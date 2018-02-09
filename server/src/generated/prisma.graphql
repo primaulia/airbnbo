@@ -15,6 +15,7 @@ type Home implements Node {
   title: String!
   price: Int!
   nbeds: Int
+  owner(where: UserWhereInput): User
 }
 
 type Link implements Node {
@@ -171,6 +172,7 @@ input HomeCreateInput {
   title: String!
   price: Int!
   nbeds: Int
+  owner: UserCreateOneInput
 }
 
 type HomeEdge {
@@ -221,6 +223,7 @@ input HomeUpdateInput {
   title: String
   price: Int
   nbeds: Int
+  owner: UserUpdateOneInput
 }
 
 input HomeWhereInput {
@@ -270,6 +273,7 @@ input HomeWhereInput {
   nbeds_lte: Int
   nbeds_gt: Int
   nbeds_gte: Int
+  owner: UserWhereInput
 }
 
 input HomeWhereUniqueInput {
@@ -568,6 +572,11 @@ input UserCreateInput {
   votes: VoteCreateManyWithoutUserInput
 }
 
+input UserCreateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+}
+
 input UserCreateOneWithoutLinksInput {
   create: UserCreateWithoutLinksInput
   connect: UserWhereUniqueInput
@@ -642,6 +651,13 @@ input UserUpdateInput {
   password: String
   links: LinkUpdateManyWithoutPostedByInput
   votes: VoteUpdateManyWithoutUserInput
+}
+
+input UserUpdateOneInput {
+  create: UserCreateInput
+  connect: UserWhereUniqueInput
+  disconnect: UserWhereUniqueInput
+  delete: UserWhereUniqueInput
 }
 
 input UserUpdateOneWithoutLinksInput {

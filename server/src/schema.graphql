@@ -11,6 +11,7 @@ type Mutation {
   login(email: String!, password: String!): AuthPayload
   vote(linkId: ID!): Vote
   createHome(title: String!, price: Int!, nbeds: Int): Home!
+  
 }
 
 type Subscription {
