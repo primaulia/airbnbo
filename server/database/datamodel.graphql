@@ -28,3 +28,8 @@ type Home {
   price: Int!
   nbeds: Int
 }
+
+type Category {
+  id: ID! @unique
+  name: String!
+}

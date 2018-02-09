@@ -15,7 +15,7 @@ async function feed(parent, args, ctx, info) {
   }
 }
 
-async function allHomes(parent, args, ctx, info) {
+async function allHomes(_, _, ctx) {
   const allHomes = await ctx.db.query.homes({})
   return allHomes
 }
