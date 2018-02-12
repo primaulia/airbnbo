@@ -10,12 +10,11 @@ import CreateHomeForm from './CreateHomeForm'
 
 class LinkList extends Component {
   render () {
-
-    const { feedQuery, homesQuery  } = this.props
+    const { feedQuery, homesQuery } = this.props
     // the query is still loading
     if (feedQuery && feedQuery.loading) {
       return (
-        <article className="pa3 ph5-ns">
+        <article className='pa3 ph5-ns'>
           <div>
             Loading...
           </div>
@@ -26,7 +25,7 @@ class LinkList extends Component {
     // the query has errors
     if (feedQuery && feedQuery.error) {
       return (
-        <article className="pa3 ph5-ns">
+        <article className='pa3 ph5-ns'>
           <div>
             { feedQuery.error.message }
           </div>
@@ -36,20 +35,57 @@ class LinkList extends Component {
 
     // everything's fine, got the data back
     const linksToRender = feedQuery.feed.links
-    let {allHomes} = this.props.homesQuery
+    let {allHomes} = homesQuery
 
     let links = linksToRender.map(link => <Link key={link.id} link={link} />)
     let allHomesList = allHomes.map(home => <Home key={home.id} {...home} />)
     return (
-      <main className="bg-white">
-        <div className="fn fl-ns w-30-ns pr4-ns">
+      <main className='bg-white'>
+        <div className='fn fl-ns w-30-ns pr4-ns'>
           <CreateHomeForm />
         </div>
-        <div className="fn fl-ns w-70-ns pr4-ns">
+        <div className='fn fl-ns w-70-ns pr4-ns'>
           { allHomesList }
         </div>
       </main>
     )
+  }
+
+  componentDidMount () {
+    var document = gql`
+      subscription {
+        subsToNewHome {
+          node {
+            id
+            title
+            price
+            nbeds
+      		}
+        }
+      }
+    `
+
+    const updateQuery = (previous, {subscriptionData}) => {
+      console.log(subscriptionData);
+      // // console.log(`previous: ${JSON.stringify(previous)}`)
+      // // console.log(`subscriptionData: ${JSON.stringify(subscriptionData)}`)
+      // const newHome = subscriptionData.data.subsToNewHome.node
+      // const { allHomes } = previous
+      // const allNewHomes = [newHome, ...allHomes]
+      //
+      // // console.log(`newHomes: ${JSON.stringify(newHome)}`)
+      // // console.log(allNewHomes)
+      // const result = {
+      //   allHomes: allNewHomes
+      // }
+      //
+      // return result
+    }
+
+    this.props.homesQuery.subscribeToMore({
+      document,
+      updateQuery
+    })
   }
 }
 

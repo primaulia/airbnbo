@@ -40,7 +40,7 @@ const link = split(
 // this is the object that helps to run the graphql query
 // or mutation for you
 const caller = new ApolloClient({
-  link: httpLink,
+  link, // use split link instead of httpLink
   cache: new InMemoryCache()
 })
 

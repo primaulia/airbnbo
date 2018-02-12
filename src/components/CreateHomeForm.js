@@ -56,7 +56,7 @@ class CreateHomeForm extends Component {
     return (
       <form className="pa4 black-80" onSubmit={this.controlSubmitForm}>
         <div className="measure">
-          <label for="title" className="f6 b db mb2">Title</label>
+          <label htmlFor="title" className="f6 b db mb2">Title</label>
           <input id="title"
             className="input-reset ba b--black-20 pa2 mb2 db w-100"
             type="text"
@@ -66,7 +66,7 @@ class CreateHomeForm extends Component {
           <small id="title-desc" className="f6 black-60 db mb2">Write your listing title</small>
         </div>
         <div className="measure">
-          <label for="nbeds" className="f6 b db mb2"># of Beds</label>
+          <label htmlFor="nbeds" className="f6 b db mb2"># of Beds</label>
           <input id="nbeds"
             className="input-reset ba b--black-20 pa2 mb2 db w-100"
             type="text"
@@ -75,7 +75,7 @@ class CreateHomeForm extends Component {
           />
         </div>
         <div className="measure">
-          <label for="price" className="f6 b db mb2">Price</label>
+          <label htmlFor="price" className="f6 b db mb2">Price</label>
           <input id="price"
             className="input-reset ba b--black-20 pa2 mb2 db w-100"
             type="number"
@@ -84,8 +84,8 @@ class CreateHomeForm extends Component {
           />
           <small id="price-desc" className="f6 black-60 db mb2">Your listing price</small>
         </div>
-        <div class="mt3">
-          <input class="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" type="submit" value="Submit" />
+        <div className="mt3">
+          <input className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6" type="submit" value="Submit" />
         </div>
         {/* <h2>Uncontrolled Form</h2>
           <input type="text" ref={input => this._homeTitle = input} />

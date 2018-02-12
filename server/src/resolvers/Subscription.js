@@ -1,26 +1,18 @@
 const newLink = {
   subscribe: (parent, args, ctx, info) => {
-    return ctx.db.subscription.link(
-      { where: { mutation_in: ['CREATED'] } },
-      info,
-    )
+    return ctx.db.subscription.link()
   },
 }
 
 const newVote = {
   subscribe: (parent, args, ctx, info) => {
-    return ctx.db.subscription.vote(
-      { where: { mutation_in: ['CREATED'] } },
-      info,
-    )
+    return ctx.db.subscription.vote()
   },
 }
 
 const subsToNewHome = {
   subscribe: (parent, args, ctx, info) => {
-    return ctx.db.subscription.home(
-      { where: { mutation_in: ['CREATED'] } }
-    )
+    return ctx.db.subscription.home({}, info)
   }
 }
 
