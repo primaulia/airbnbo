@@ -14,15 +14,26 @@ class LinkList extends Component {
     const { feedQuery, homesQuery  } = this.props
     // the query is still loading
     if (feedQuery && feedQuery.loading) {
-      return <div>Loading</div>
+      return (
+        <article className="pa3 ph5-ns">
+          <div>
+            Loading...
+          </div>
+        </article>
+      )
     }
 
     // the query has errors
     if (feedQuery && feedQuery.error) {
-      return <div>{ feedQuery.error.message }</div>
+      return (
+        <article className="pa3 ph5-ns">
+          <div>
+            { feedQuery.error.message }
+          </div>
+        </article>
+      )
     }
 
-    console.log('this.props.homesQuery', this.props.homesQuery.allHomes)
     // everything's fine, got the data back
     const linksToRender = feedQuery.feed.links
     let {allHomes} = this.props.homesQuery
@@ -30,12 +41,14 @@ class LinkList extends Component {
     let links = linksToRender.map(link => <Link key={link.id} link={link} />)
     let allHomesList = allHomes.map(home => <Home key={home.id} {...home} />)
     return (
-      <div>
-        <h1>Airbnbo</h1>
-        {/* hidden for now { links } */}
-        { allHomesList }
-        <CreateHomeForm />
-      </div>
+      <main className="bg-white">
+        <div className="fn fl-ns w-30-ns pr4-ns">
+          <CreateHomeForm />
+        </div>
+        <div className="fn fl-ns w-70-ns pr4-ns">
+          { allHomesList }
+        </div>
+      </main>
     )
   }
 }
