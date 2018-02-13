@@ -51,7 +51,7 @@ class LinkList extends Component {
     )
   }
 
-  componentDidMount () {
+  componentWillReceiveProps (newProps) {
     var document = gql`
       subscription {
         subsToNewHome {
@@ -66,7 +66,7 @@ class LinkList extends Component {
     `
 
     const updateQuery = (previous, {subscriptionData}) => {
-      console.log(subscriptionData);
+      console.log('called')
       // // console.log(`previous: ${JSON.stringify(previous)}`)
       // // console.log(`subscriptionData: ${JSON.stringify(subscriptionData)}`)
       // const newHome = subscriptionData.data.subsToNewHome.node
@@ -80,6 +80,8 @@ class LinkList extends Component {
       // }
       //
       // return result
+
+      return
     }
 
     this.props.homesQuery.subscribeToMore({
